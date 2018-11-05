@@ -12,52 +12,52 @@ This goal of this project was to predict sales prices and practice feature engin
 
 * [2 Introduction](#2-Introduction)
 * [3 Loading and Exploring the Data](#3-Loading-and-Exploring-the-Data-Structure)
-    * [3.1 Loading Required Libraries and Reading the Data into Python](#3.1-Loading-Required-Libraries-and-Reading-the-Data-into-Python)
-    * [3.2 Data Structure](#mht)
+    * 3.1 Loading Required Libraries and Reading the Data into Python
+    * 3.2 Data Structure
 
 
 * [4 Exploring the Variables](#4-Exploring-the-Variables)
-    * [4.1 Exploring the SalePrice Response Variable](#4.1-Exploring-the-Saleprice-Response-Variable)
-    * [4.2 Log-Transformation of the Response Variable](#4.2-Log-Transformation-of-the-Response-Variable)
+    * 4.1 Exploring the SalePrice Response Variable
+    * 4.2 Log-Transformation of the Response Variable
 
 
 * [5 Data Imputation](#5-Data-Imputation)
-    * [5.1 Completeness of the Data](#5.1-Completeness-of-the-Data)
-    * [5.2 Impute the Missing Data](#5.2-Impute-the-Missing-Data)
-        * [5.2.1 Missing Values Corresponding to Lack of Specific Feature](#5.2.1-Missing-Values-Corresponding-to-Lack-of-Specific-Feature)
-        * [5.2.2 Replacing Missing Values with Mode Imputation](#5.2.2-Replacing-Missing-Values-with-Mode-Imputation)
+    * 5.1 Completeness of the Data
+    * 5.2 Impute the Missing Data
+        * 5.2.1 Missing Values Corresponding to Lack of Specific Feature
+        * 5.2.2 Replacing Missing Values with Mode Imputation
 
 
 * [6 Feature Engineering](#6-Feature-Engineering)
-    * [6.1 Mixed Conditions](#6.1-Mixed-Conditions)
-    * [6.2 Mixed Exterior](#6.2-Mixed-Exterior)
-    * [6.3 Total Square Feet](#6.3-Total-Square-Feet)
-    * [6.4 Total Number of Bathrooms](#6.4-Total-Number-of-Bathrooms)
-    * [6.5 Binning the Neighbourhoods](#6.5-Binning-the-Neighbourhoods)
+    * 6.1 Mixed Conditions
+    * 6.2 Mixed Exterior
+    * 6.3 Total Square Feet
+    * 6.4 Total Number of Bathrooms
+    * 6.5 Binning the Neighbourhoods
 
 
 * [7 LotFrontage Imputation](#7-LotFrontage-Imputation)
-    * [7.1 LotFrontage Data Structure](#7.1-LotFrontage-Data-Structure)
-    * [7.2 Outlier Detection & Removal](#7.2-Outlier-Detection-&-Removal)
-    * [7.3 Determining Relevant Variables of LotFrontage](#7.3-Determining-Relevant-Variables-of-LotFrontage)
-    * [7.4 LotFrontage Model Building and Evaluation](#7.4-LotFrontage-Model-Building-and-Evaluation)
+    * 7.1 LotFrontage Data Structure
+    * 7.2 Outlier Detection & Removal
+    * 7.3 Determining Relevant Variables of LotFrontage
+    * 7.4 LotFrontage Model Building and Evaluation
 
 
 * [8 Preparing the Data for Modelling](#8-Preparing-the-Data-for-Modelling)
-    * [8.1 Removing Outliers](#8.1-Removing-Outliers)
-    * [8.2 Correlation Between Numeric Predictors](#8.2-Correlation-Between-Numeric-Predictors)
-    * [8.3 Label Encoding](#8.3-Label-Encoding)
-    * [8.4 Skewness & Normalization of Numeric Variables](#8.4-Skewness-&-Normalization-of-Numeric-Variables)
-    * [8.5 One Hot Encoding the Categorical Variables](#8.5-One-Hot-Encoding-the-Categorical-Variables)
+    * 8.1 Removing Outliers
+    * 8.2 Correlation Between Numeric Predictors
+    * 8.3 Label Encoding
+    * 8.4 Skewness & Normalization of Numeric Variables
+    * 8.5 One Hot Encoding the Categorical Variables
 
 
 * [9 SalePrice Modelling](#9-SalePrice-Modelling)
-    * [9.1 Obtaining Final Train and Test Sets](#9.1-Obtaining-Final-Train-and-Test-Sets)
-    * [9.2 Defining a Cross Validation Strategy](#9.2-Defining-a-Cross-Validation-Strategy)
-    * [9.3 Lasso Regression Model](#9.3-Lasso-Regression-Model)
-    * [9.4 Ridge Regression Model](#9.4-Ridge-Regression-Model)
-    * [9.5 XGBoost Model](#9.5-XGBoost-Model)
-    * [9.6 Ensemble Model](#9.6-Ensemble-Model)
+    * 9.1 Obtaining Final Train and Test Sets
+    * 9.2 Defining a Cross Validation Strategy
+    * 9.3 Lasso Regression Model
+    * 9.4 Ridge Regression Model
+    * 9.5 XGBoost Model
+    * 9.6 Ensemble Model
 
 
 <br>
@@ -146,7 +146,7 @@ train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 ```
 
-## 3.2 Data Structure {#mht}
+## 3.2 Data Structure
 
 In total, there are 81 columns/variables in the train dataset, including the response variable (SalePrice). I am only displaying a subset of the variables, as all of them will be discussed in more detail throughout the notebook.
 
@@ -556,9 +556,10 @@ def mode_impute_and_plot(variable):
 
 Now we can proceed to replace the missing values for the following variables:
 
-[]()  |
-------|------
-[MSZoning](#MSZoning) | [Utilities](#Utilities) | [Electrical](#Electrical) | [Exterior1st and Exterior2nd](#Exterior1st-and-Exterior2nd) | [KitchenQual](#KitchenQual) | [SaleType](#SaleType)
+|          |           |            |                             |             |          |
+|----------|-----------|------------|-----------------------------|-------------|----------|
+| MSZoning | Utilities | Electrical | Exterior1st and Exterior2nd | KitchenQual | SaleType |
+
 
 <a id="MSZoning"></a>
 
