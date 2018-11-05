@@ -1,33 +1,31 @@
 
 # House Prices: Advanced Regression Techniques
 
-This goal of this project was to predict sales prices and practice feature engineering, RFs, and gradient boosting. The dataset was part of the [House Prices Kaggle Competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques).
-
-## [View the project using nbviewer](https://nbviewer.jupyter.org/github/Bashkeel/House-Prices/blob/master/House%20Prices.ipynb)
+This goal of this project was to predict sales prices and practice feature engineering, RFs, and gradient boosting. The dataset was part of the [House Prices Kaggle Competition](https://www.kaggle.com/c/house-prices-advanced-regression-techniques). 
 
 <br>
 
 ### Table of Contents
 * [1 Summary](#1-Summary)
 
-* [2 Introduction](#2-Introduction)
+* [2 Introduction](#2-Introduction) 
 * [3 Loading & Exploring the Data](#3-Loading-&-Exploring-the-Data-Structure)
     * [3.1 Loading Required Libraries and Reading the Data into Python](#3.1-Loading-Required-Libraries-and-Reading-the-Data-into-Python)
     * [3.2 Data Structure](#3.2-Data-Structure)
-
+ 
 
 * [4 Exploring the Variables](#4-Exploring-the-Variables)
-    * [4.1 Exploring the SalePrice Response Variable](#4.1-Exploring-the-Saleprice-Response-Variable)
+    * [4.1 Exploring the Response Variable: SalePrice](#4.1-Exploring-the-Response-Variable:-SalePrice)
     * [4.2 Log-Transformation of the Response Variable](#4.2-Log-Transformation-of-the-Response-Variable)
-
+ 
 
 * [5 Data Imputation](#5-Data-Imputation)
     * [5.1 Completeness of the Data](#5.1-Completeness-of-the-Data)
     * [5.2 Impute the Missing Data](#5.2-Impute-the-Missing-Data)
         * [5.2.1 Missing Values Corresponding to Lack of Specific Feature](#5.2.1-Missing-Values-Corresponding-to-Lack-of-Specific-Feature)
-        * [5.2.2 Replacing Missing Values with Mode Imputation](#5.2.2-Replacing-Missing-Values-with-Mode-Imputation)
+        * [5.2.2 Mode Imputation: Replacing Missing Values with Most Frequent Value](#5.2.2-Mode-Imputation:-Replacing-Missing-Values-with-Most-Frequent-Value)
 
-
+ 
 * [6 Feature Engineering](#6-Feature-Engineering)
     * [6.1 Mixed Conditions](#6.1-Mixed-Conditions)
     * [6.2 Mixed Exterior](#6.2-Mixed-Exterior)
@@ -35,14 +33,14 @@ This goal of this project was to predict sales prices and practice feature engin
     * [6.4 Total Number of Bathrooms](#6.4-Total-Number-of-Bathrooms)
     * [6.5 Binning the Neighbourhoods](#6.5-Binning-the-Neighbourhoods)
 
-
+ 
 * [7 LotFrontage Imputation](#7-LotFrontage-Imputation)
     * [7.1 LotFrontage Data Structure](#7.1-LotFrontage-Data-Structure)
     * [7.2 Outlier Detection & Removal](#7.2-Outlier-Detection-&-Removal)
     * [7.3 Determining Relevant Variables of LotFrontage](#7.3-Determining-Relevant-Variables-of-LotFrontage)
     * [7.4 LotFrontage Model Building and Evaluation](#7.4-LotFrontage-Model-Building-and-Evaluation)
 
-
+ 
 * [8 Preparing the Data for Modelling](#8-Preparing-the-Data-for-Modelling)
     * [8.1 Removing Outliers](#8.1-Removing-Outliers)
     * [8.2 Correlation Between Numeric Predictors](#8.2-Correlation-Between-Numeric-Predictors)
@@ -50,7 +48,7 @@ This goal of this project was to predict sales prices and practice feature engin
     * [8.4 Skewness & Normalization of Numeric Variables](#8.4-Skewness-&-Normalization-of-Numeric-Variables)
     * [8.5 One Hot Encoding the Categorical Variables](#8.5-One-Hot-Encoding-the-Categorical-Variables)
 
-
+ 
 * [9 SalePrice Modelling](#9-SalePrice-Modelling)
     * [9.1 Obtaining Final Train and Test Sets](#9.1-Obtaining-Final-Train-and-Test-Sets)
     * [9.2 Defining a Cross Validation Strategy](#9.2-Defining-a-Cross-Validation-Strategy)
@@ -88,13 +86,13 @@ In this project, I created a predictive model that has been trained on data coll
 |                  |
 | <b>Ensemble</b>  |                 | 0.12220   |
 
-The Ridge regression model performed the best as a single model, likely due to the high multicollinearity. However, combining it with the Lasso and XGBoost regression models resulting in a higher prediction accuracy and a lower RMSE (<i>0.12220</i> vs <i>0.12528</i>).
+The Ridge regression model performed the best as a single model, likely due to the high multicollinearity. However, combining it with the Lasso and XGBoost regression models resulting in a higher prediction accuracy and a lower RMSE (<i>0.12220</i> vs <i>0.12528</i>). 
 
 # 2 Introduction
 
-The dataset used for this project is the [Ames Housing dataset](https://amstat.tandfonline.com/doi/abs/10.1080/10691898.2011.11889627) that was compiled by <i>Dean De Cock</i> for use in data science education. It is an alternative to the popular but older [Boston Housing dataset](http://lib.stat.cmu.edu/datasets/boston).
+The dataset used for this project is the [Ames Housing dataset](https://amstat.tandfonline.com/doi/abs/10.1080/10691898.2011.11889627) that was compiled by <i>Dean De Cock</i> for use in data science education. It is an alternative to the popular but older [Boston Housing dataset](http://lib.stat.cmu.edu/datasets/boston). 
 
-The Ames Housing dataset is also used in the [Advanced Regression Techniques challenge](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) on the Kaggle Website. These competitions is a great way to improve my skills and measure my progress as a data scientist.
+The Ames Housing dataset is also used in the [Advanced Regression Techniques challenge](https://www.kaggle.com/c/house-prices-advanced-regression-techniques) on the Kaggle Website. These competitions is a great way to improve my skills and measure my progress as a data scientist. 
 
 Kaggle describes the competition as follows:
 
@@ -160,7 +158,7 @@ print("Dimensions of Test Dataset:" + str(test.shape))
 
     Dimensions of Train Dataset:(1460, 81)
     Dimensions of Test Dataset:(1459, 80)
-
+    
 
 
 ```python
@@ -182,7 +180,7 @@ train.iloc[:,0:10].info()
     Utilities      1460 non-null object
     dtypes: float64(1), int64(3), object(6)
     memory usage: 114.1+ KB
-
+    
 
 Next, we are going to define a few variables that will be used in later analyses as well as being required for the submission file.
 
@@ -206,9 +204,9 @@ all_data.drop('Id', axis=1,inplace=True)
 
 # 4 Exploring the Variables
 
-## 4.1 Exploring the SalePrice Response Variable
+## 4.1 Exploring the Response Variable: SalePrice
 
-The probability distribution plot show that the sale prices are right skewed. This is to be expected as few people can afford very expensive houses.
+The probability distribution plot show that the sale prices are right skewed. This is to be expected as few people can afford very expensive houses. 
 
 
 ```python
@@ -271,11 +269,25 @@ We first need to find which variables contain missing values.
 
 ```python
 cols_with_missing_values = all_data.isnull().sum().sort_values(ascending=False)
-display(pd.DataFrame(cols_with_missing_values[cols_with_missing_values[cols_with_missing_values > 0].index],
+display(pd.DataFrame(cols_with_missing_values[cols_with_missing_values[cols_with_missing_values > 0].index], 
                      columns=["Number of Missing Values"]))
 ```
 
+
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -452,28 +464,28 @@ plt.show()
 all_data['PoolQC'].replace(np.nan, 'None', regex=True, inplace=True)
 ```
 
-* <b>MiscFeature</b>: data description of the variables states that NA represents "no miscellaneous feature".
+* <b>MiscFeature</b>: data description of the variables states that NA represents "no miscellaneous feature". 
 
 
 ```python
 all_data['MiscFeature'].replace(np.nan, 'None', regex=True, inplace=True)
 ```
 
-* <b>Alley</b>: data description of the variables states that NA represents "no alley access".
+* <b>Alley</b>: data description of the variables states that NA represents "no alley access". 
 
 
 ```python
 all_data['Alley'].replace(np.nan, 'None', regex=True, inplace=True)
 ```
 
-* <b>Fence</b>: data description of the variables states that NA represents "no fence".
+* <b>Fence</b>: data description of the variables states that NA represents "no fence". 
 
 
 ```python
 all_data['Fence'].replace(np.nan, 'None', regex=True, inplace=True)
 ```
 
-* <b>FireplaceQU</b>: data description of the variables states that NA represents "no fireplace".
+* <b>FireplaceQU</b>: data description of the variables states that NA represents "no fireplace". 
 
 
 ```python
@@ -531,7 +543,7 @@ all_data['MasVnrArea'].replace(np.nan, 0, regex=True, inplace=True)
 all_data['Functional'].replace(np.nan, 'Typ', regex=True, inplace=True)
 ```
 
-### 5.2.2 Replacing Missing Values with Mode Imputation
+### 5.2.2 Mode Imputation: Replacing Missing Values with Most Frequent Value
 
 Using a mode imputation, we replace the missing values of a categorical variable with the mode of the non-missing cases of that variable. While it does have the advantage of being fast, it comes at the cost of a reduction in variance within the dataset.
 
@@ -550,15 +562,15 @@ def mode_impute_and_plot(variable):
     ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
     plt.tight_layout()
     plt.show()
-
+    
     all_data[variable].replace(np.nan, all_data[variable].mode()[0], regex=True, inplace=True)
 ```
 
 Now we can proceed to replace the missing values for the following variables:
 
-[]()  |
+[]()  | 
 ------|------
-[MSZoning](#MSZoning) | [Utilities](#Utilities) | [Electrical](#Electrical) | [Exterior1st and Exterior2nd](#Exterior1st-and-Exterior2nd) | [KitchenQual](#KitchenQual) | [SaleType](#SaleType)
+[MSZoning](#MSZoning) | [Utilities](#Utilities) | [Electrical](#Electrical) | [Exterior1st and Exterior2nd](#Exterior1st and Exterior2nd) | [KitchenQual](#KitchenQual) | [SaleType](#SaleType)
 
 <a id="MSZoning"></a>
 
@@ -570,7 +582,7 @@ mode_impute_and_plot('MSZoning')
 ```
 
     # of missing values: 4
-
+    
 
 
 ![png](House%20Prices_files/House%20Prices_59_1.png)
@@ -588,7 +600,7 @@ all_data = all_data.drop('Utilities', axis=1)
 ```
 
     # of missing values: 2
-
+    
 
 
 ![png](House%20Prices_files/House%20Prices_62_1.png)
@@ -604,7 +616,7 @@ mode_impute_and_plot('Electrical')
 ```
 
     # of missing values: 1
-
+    
 
 
 ![png](House%20Prices_files/House%20Prices_65_1.png)
@@ -620,7 +632,7 @@ mode_impute_and_plot('Exterior1st')
 ```
 
     # of missing values: 1
-
+    
 
 
 ![png](House%20Prices_files/House%20Prices_68_1.png)
@@ -632,7 +644,7 @@ mode_impute_and_plot('Exterior2nd')
 ```
 
     # of missing values: 1
-
+    
 
 
 ![png](House%20Prices_files/House%20Prices_69_1.png)
@@ -648,7 +660,7 @@ mode_impute_and_plot('KitchenQual')
 ```
 
     # of missing values: 1
-
+    
 
 
 ![png](House%20Prices_files/House%20Prices_72_1.png)
@@ -664,7 +676,7 @@ mode_impute_and_plot('SaleType')
 ```
 
     # of missing values: 1
-
+    
 
 
 ![png](House%20Prices_files/House%20Prices_75_1.png)
@@ -679,7 +691,21 @@ display(pd.DataFrame(cols_with_missing_values[cols_with_missing_values[cols_with
 
 ```
 
+
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -701,7 +727,7 @@ display(pd.DataFrame(cols_with_missing_values[cols_with_missing_values[cols_with
 </div>
 
 
-Due to its numeric nature and the large number of missing values, the  LotFrontage variable will be imputed separately using an SVM algorithm (See Section [7 LotFrontage Imputation](#7-Lot-Frontage-Imputation)).
+Due to its numeric nature and the large number of missing values, the  LotFrontage variable will be imputed separately using an SVM algorithm (See Section [7 LotFrontage Imputation](#7-Lot-Frontage-Imputation)). 
 
 <br>
 The remaining variables are all complete! Now to move on to feature engineering.
@@ -720,17 +746,18 @@ If a property does not have one or multiple conditions, then it is classified as
 
 For example, if a property is in proximity to a feeder street ("Feedr") and no other condition, then the data would appear as follows:
 
-| Condition1 | Condition2 |
-|------------|------------|
-|    Feedr   |    Norm    |
+Condition1 | Condition2
+-----------|-------------
+    Feedr  |    Norm
 
 <br>
-
+    
 However, if a property is within 200' of East-West Railroad (RRNe) and no other condition, then the data would appear as follows:
 
-| Condition1 | Condition2 |
-|------------|------------|
-|    Norm    |    RRNe    |
+Condition1 | Condition2
+-----------|-------------
+    Norm   |    RRNe
+
 
 <br><br>
 
@@ -768,11 +795,27 @@ SF_summary = []
 for SF_type in SF_vars:
     corr_val = np.corrcoef(SF_df[SF_type], SF_df['SalePrice'])[1][0]
     SF_summary.append(corr_val)
-
+    
 pd.DataFrame([SF_summary], columns=SF_vars, index=['SalePrice Correlation'])
 ```
 
+
+
+
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -812,7 +855,7 @@ print("Pearson Correlation Coefficient: %.3f" %  (np.corrcoef(all_data['TotalSF'
 
 
     Pearson Correlation Coefficient: 0.782
-
+    
 
 There is a very strong correlation (r = 0.78) between the TotalSF and the SalePrice, with the exception of two outliers. These outliers should be removed to increase the accuracy of our model.
 
@@ -820,7 +863,7 @@ There is a very strong correlation (r = 0.78) between the TotalSF and the SalePr
 
 There are 4 bathroom variables. Individually, these variables are not very important. Together, however, these predictors are likely to become a strong one.
 
-A full bath is made up of four parts: a sink, shower, a bathtub, and a toilet. A half-bath, also called a powder room or guest bath, only has a sink and a toilet. As such, half-bathrooms will have half the value of a full bath.
+A full bath is made up of four parts: a sink, shower, a bathtub, and a toilet. A half-bath, also called a powder room or guest bath, only has a sink and a toilet. As such, half-bathrooms will have half the value of a full bath. 
 
 
 ```python
@@ -834,11 +877,27 @@ bath_summary = []
 for bath_type in bath_vars:
     corr_val = np.corrcoef(bath_df[bath_type], bath_df['SalePrice'])[1][0]
     bath_summary.append(corr_val)
-
+    
 pd.DataFrame([bath_summary], columns=bath_vars, index=['SalePrice Correlation'])
 ```
 
+
+
+
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -889,7 +948,7 @@ print("Pearson Correlation Coefficient: %.3f" %  (np.corrcoef(all_data['TotalBat
 
 
     Pearson Correlation Coefficient: 0.632
-
+    
 
 We can see a high positive correlation (r = 0.67) between TotalBath and SalePrice. The new variable correlation is much higher than any of the four original bathroom variables.
 
@@ -914,11 +973,11 @@ plt.show()
 
 In order to bin the neighbourhoods into approriate clusters, we will use K-Mean clustering. <b>K-Means</b> is an unsupervised machine learning algorithm that groups a dataset into a user-specified number (<i>k</i>) of clusters. One potential issue with the algorithm is that it will cluster the data into <i>k</i> clusters, even if <i>k</i> is not the right number of cluster to use.
 
-Therefore, we need to identity the optimal number of k clusters to use. To do so, we will use the <i>Elbow Method</i>.
+Therefore, we need to identity the optimal number of k clusters to use. To do so, we will use the <i>Elbow Method</i>. 
 
-Briefly, the idea of the elbow method is to run k-means clustering for a range of values and calculate the sum of squared errors (SSE). We then plot a line chart of the SSE for each value of <i>k</i>. Each additional <i>k</i> cluster will result in a lower SSE, but will eventually exhibit significantly diminished return.
+Briefly, the idea of the elbow method is to run k-means clustering for a range of values and calculate the sum of squared errors (SSE). We then plot a line chart of the SSE for each value of <i>k</i>. Each additional <i>k</i> cluster will result in a lower SSE, but will eventually exhibit significantly diminished return. 
 
-The goal is the choose a small value of k with a low SSE, after which the subsequent k values exhibit diminishing returns. If the line plot looks like an arm, then the "elbow" of the arm is the optimal <i>k</i> value.
+The goal is the choose a small value of k with a low SSE, after which the subsequent k values exhibit diminishing returns. If the line plot looks like an arm, then the "elbow" of the arm is the optimal <i>k</i> value. 
 
 The plot below indicates that the optimal number of neighbourhood clusters is <i>k</i> = 3.
 
@@ -930,7 +989,7 @@ for k in K:
     km = KMeans(n_clusters=k)
     km = km.fit(neighborhood_prices)
     SS_distances.append(km.inertia_)
-
+    
 
 plt.plot(K, SS_distances, 'bx-')
 plt.xlabel('k')
@@ -950,7 +1009,7 @@ Now let's see how the binned neighborhoods look like.
 neighborhood_prices['Cluster'] = KMeans(n_clusters=3).fit(neighborhood_prices).labels_
 
 plt.figure(figsize=(15,7))
-ax = sns.barplot(x= neighborhood_prices.index, y=neighborhood_prices['SalePrice'],
+ax = sns.barplot(x= neighborhood_prices.index, y=neighborhood_prices['SalePrice'], 
                  hue=neighborhood_prices['Cluster'])
 ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right")
 plt.tight_layout()
@@ -989,13 +1048,27 @@ print("Dimensions of Test LotFrontage Dataset:" + str(test_LotFrontage.shape))
 display(pd.DataFrame(all_data['LotFrontage'].describe()).transpose())
 ```
 
-
-
+    
+    
     Dimensions of Train LotFrontage Dataset:(2433, 81)
     Dimensions of Test LotFrontage Dataset:(486, 81)
+    
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1050,7 +1123,7 @@ plt.show()
 
 
 ## 7.2 Outlier Detection & Removal
-Before we examine the correlations between <i>LotFrontage</i> and other variables, we should remove the outliers seen above.
+Before we examine the correlations between <i>LotFrontage</i> and other variables, we should remove the outliers seen above. 
 
 To do so, we will use the Interquartile Range (IQR) method, where values outside the <i>Median ± 1.5IQR</i> are considered to be outliers. These outliers are then removed from the <i>LotFrontage</i> datasets.
 
@@ -1103,7 +1176,21 @@ aov_table = sm.stats.anova_lm(mod, typ=3)
 display(aov_table[aov_table['PR(>F)'] < 0.01])
 ```
 
+
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1277,7 +1364,7 @@ print('Mean Absolute Error:  %.3f' % mean_absolute_error(y_test, preds))
 ```
 
     Mean Absolute Error:  6.848
-
+    
 
 These results show that using the SVR model to impute <i>LotFrontage</i> gives an average rror of less than 7 feet.
 
@@ -1304,13 +1391,21 @@ clf.fit(model_X_train, model_y_train)
 LotFrontage_preds = clf.predict(model_X_test)
 ```
 
-Now that we have the newly predicted <i>LotFrontage</i> values, we can examine the distribution of predicted values relative to the known <i>LotFrontage</i> values in the training dataset. Both distributions have a mean around 70 feet with similar tail lengths on either end.
+Now that we have the newly predicted <i>LotFrontage</i> values, we can examine the distribution of predicted values relative to the known <i>LotFrontage</i> values in the training dataset. Both distributions have a mean around 70 feet with similar tail lengths on either end. 
 
 
 ```python
 sns.distplot(model_y_train)
 sns.distplot(LotFrontage_preds)
 ```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0x1550eb4dba8>
+
+
+
 
 ![png](House%20Prices_files/House%20Prices_118_1.png)
 
@@ -1321,6 +1416,13 @@ Lastly, we need to add the predicted values back into the original dataset.
 ```python
 all_data.LotFrontage[all_data.LotFrontage.isnull()] = LotFrontage_preds
 ```
+
+    C:\Users\bashk\Anaconda\lib\site-packages\ipykernel_launcher.py:1: SettingWithCopyWarning: 
+    A value is trying to be set on a copy of a slice from a DataFrame
+    
+    See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+      """Entry point for launching an IPython kernel.
+    
 
 # 8 Preparing the Data for Modelling
 
@@ -1370,8 +1472,8 @@ for col in num_to_str_columns:
 
 
 ```python
-cat_cols = ['OverallQual', 'OverallCond', 'ExterQual', 'ExterCond', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1',
-            'BsmtFinType2', 'BsmtFinSF2', 'HeatingQC', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath', 'BedroomAbvGr',
+cat_cols = ['OverallQual', 'OverallCond', 'ExterQual', 'ExterCond', 'BsmtQual', 'BsmtCond', 'BsmtExposure', 'BsmtFinType1', 
+            'BsmtFinType2', 'BsmtFinSF2', 'HeatingQC', 'BsmtFullBath', 'BsmtHalfBath', 'FullBath', 'HalfBath', 'BedroomAbvGr', 
             'KitchenAbvGr', 'KitchenQual', 'TotRmsAbvGrd', 'Fireplaces', 'FireplaceQu', 'GarageFinish', 'GarageCars',
             'GarageQual', 'GarageCond', 'PoolQC', 'Fence', 'YearBuilt', 'YearRemodAdd', 'GarageYrBlt', 'MoSold', 'YrSold']
 
@@ -1385,12 +1487,25 @@ all_data.head()
 ```
 
     Shape all_data: (2917, 81)
-
+    
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1548,13 +1663,13 @@ all_data.head()
 
 ## 8.4 Skewness & Normalization of Numeric Variables
 
-<b>Skewness</b> is a measure of asymmetry of a distribution, and can be used to define the extent to which the distribution differs from a normal distribution. Therefore, a normal distribution will have a skewness of 0. As a rule of thumb, if skewness is less than -1 or greater than 1, the distribution is highly skewed.
+<b>Skewness</b> is a measure of asymmetry of a distribution, and can be used to define the extent to which the distribution differs from a normal distribution. Therefore, a normal distribution will have a skewness of 0. As a rule of thumb, if skewness is less than -1 or greater than 1, the distribution is highly skewed. 
 
 In order to account for skewness, we will transform the (highly) skewed data into normality using a Log Transformation. We define highly skewed data as variables with a skewness greater than 0.85. This method is similar to the approach used to normalize the [SalePrice Response Variable](#4.2-Log-Transformation-of-the-Response-Variable), except we will use log+1 to avoid division by zero issues.
 
 
 ```python
-numeric_feats = ['LotFrontage', 'LotArea', 'BsmtFinSF1', 'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF',
+numeric_feats = ['LotFrontage', 'LotArea', 'BsmtFinSF1', 'BsmtUnfSF', 'TotalBsmtSF', '1stFlrSF', '2ndFlrSF', 
                  'LowQualFinSF', 'GrLivArea', 'GarageArea', 'WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch',
                  '3SsnPorch', 'ScreenPorch', 'PoolArea', 'MiscVal', 'TotalSF']
 
@@ -1575,6 +1690,19 @@ skewness
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1668,12 +1796,25 @@ all_data.head(3)
 ```
 
     (2917, 317)
-
+    
 
 
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1782,7 +1923,7 @@ all_data.head(3)
 
 
 # 9 SalePrice Modelling
-Now that the data is correctly processed, we are ready to begin building our predictive models.
+Now that the data is correctly processed, we are ready to begin building our predictive models. 
 
 ## 9.1 Obtaining Final Train and Test Sets
 
@@ -1825,7 +1966,7 @@ lasso_rmse = []
 for value in lasso_alpha:
     lasso = make_pipeline(RobustScaler(), Lasso(alpha = value, max_iter=3000, random_state = 1234))
     lasso_rmse.append(rmse_cv(lasso).mean())
-
+    
 lasso_score_table = pd.DataFrame(lasso_rmse,lasso_alpha,columns=['RMSE'])
 display(lasso_score_table.transpose())
 
@@ -1839,10 +1980,23 @@ print("\nLasso Score: {:.4f} (alpha = {:.5f})\n".format(min(lasso_score_table['R
 
     C:\Users\bashk\Anaconda\lib\site-packages\sklearn\linear_model\coordinate_descent.py:491: ConvergenceWarning: Objective did not converge. You might want to increase the number of iterations. Fitting data with very small alpha may cause precision problems.
       ConvergenceWarning)
-
+    
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1888,10 +2042,10 @@ print("\nLasso Score: {:.4f} (alpha = {:.5f})\n".format(min(lasso_score_table['R
 ![png](House%20Prices_files/House%20Prices_141_2.png)
 
 
-
+    
     Lasso Score: 0.1124 (alpha = 0.00025)
-
-
+    
+    
 
 Using the newly defined alpha value, we can optimize the model and predict the missing values of <i>SalePrice</i>. The predictions are then formatted in a appropriate layout for submission to Kaggle.
 
@@ -1923,7 +2077,7 @@ ridge_rmse = []
 for value in ridge_alpha:
     ridge = make_pipeline(RobustScaler(), Ridge(alpha = value, random_state = 1234))
     ridge_rmse.append(rmse_cv(ridge).mean())
-
+    
 ridge_score_table = pd.DataFrame(ridge_rmse,ridge_alpha,columns=['RMSE'])
 display(ridge_score_table.transpose())
 
@@ -1937,6 +2091,19 @@ print("\nRidge Score: {:.4f} (alpha = {:.4f})\n".format(min(ridge_score_table['R
 
 
 <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -1986,10 +2153,10 @@ print("\nRidge Score: {:.4f} (alpha = {:.4f})\n".format(min(ridge_score_table['R
 ![png](House%20Prices_files/House%20Prices_146_1.png)
 
 
-
+    
     Ridge Score: 0.1130 (alpha = 6.0000)
-
-
+    
+    
 
 
 ```python
@@ -2031,7 +2198,7 @@ display(grid_search.best_params_)
 ```
 
     GridSearch took 177.74 seconds to complete.
-
+    
 
 
     {'gamma': 0.0, 'learning_rate': 0.1, 'max_depth': 4, 'min_child_weight': 4}
@@ -2056,7 +2223,7 @@ print("RMSE: %.4f" % sqrt(mean_squared_error(xg_y_test, xg_preds)))
 
     Model took 12.10 seconds to complete.
     RMSE: 0.1238
-
+    
 
 Lastly, we predict the <i>SalePrice</i> using the test data. The predictions are then formatted in a appropriate layout for submission to Kaggle.
 
