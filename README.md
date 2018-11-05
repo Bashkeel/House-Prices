@@ -11,9 +11,9 @@ This goal of this project was to predict sales prices and practice feature engin
 * [1 Summary](#1-Summary)
 
 * [2 Introduction](#2-Introduction)
-* [3 Loading & Exploring the Data](#3-Loading-&-Exploring-the-Data-Structure)
+* [3 Loading and Exploring the Data](#3-Loading-and-Exploring-the-Data-Structure)
     * [3.1 Loading Required Libraries and Reading the Data into Python](#3.1-Loading-Required-Libraries-and-Reading-the-Data-into-Python)
-    * [3.2 Data Structure](#3.2-Data-Structure)
+    * [3.2 Data Structure](#mht)
 
 
 * [4 Exploring the Variables](#4-Exploring-the-Variables)
@@ -105,7 +105,7 @@ Kaggle describes the competition as follows:
 
 ![House Image](sold.jpg)
 
-# 3 Loading & Exploring the Data Structure
+# 3 Loading and Exploring the Data Structure
 
 ## 3.1 Loading Required Libraries and Reading the Data into Python
 
@@ -146,7 +146,7 @@ train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 ```
 
-## 3.2 Data Structure
+## 3.2 Data Structure {#mht}
 
 In total, there are 81 columns/variables in the train dataset, including the response variable (SalePrice). I am only displaying a subset of the variables, as all of them will be discussed in more detail throughout the notebook.
 
